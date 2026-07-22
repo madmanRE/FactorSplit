@@ -6,8 +6,31 @@ from core import shapley_decomposition, plot_shapley_analysis
 
 
 st.write("""
-# Factor Split
+# 📊 Factor Split
 """)
+
+with st.expander("📘 Инструкция по использованию"):
+    st.markdown(
+        """
+        #### ❓ FAQ: Как работает программа
+
+        **1. Пользователь отправляет файл**, который должен
+        содержать дату, 1 или более колонок для сегментов (например country, device, search_engine),
+        а также в файле должны быть колонки clicks, impressions, ctr, position
+
+        **2. Пользователь указывает** название колонки с датой,
+        названия колонок сегментов, выбирает 2 диапазона дат и 
+        указывает параметр по которому будут фильтроваться сегменты (порог фиксации сегмента). 
+        Например если значение порога фиксации сегмента = 0.01, то все
+        сегменты, чье кол-во кликов менее 1% от общих кликов будут отфильтрованы.
+
+        #### ❗ ВАЖНО:
+        * Колонки clicks, impressions, ctr, position обязательно должны быть в файле
+        * Самостоятельно требуется подготовить файл, а именно: обработать пропуски, заменить типы данные
+        с текстовых на числовые для колонок clicks, impressions, ctr, position
+
+        """
+    )
 
 with st.form("main_form"):
     file = st.file_uploader("Загрузите файл", type=["csv", "xlsx"])
@@ -26,9 +49,9 @@ with st.form("main_form"):
     min_share_of_total = st.slider(
         label="Выберете минимальный порог фиксации сегмента",
         min_value=0.0,
-        max_value=1.0,
+        max_value=0.1,
         value=0.01,
-        step=0.001
+        step=0.01
     )
     submitted = st.form_submit_button("Submit")
     if submitted:
