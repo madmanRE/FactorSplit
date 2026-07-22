@@ -7,7 +7,6 @@ from core import shapley_decomposition, plot_shapley_analysis
 
 st.write("""
 # Factor Split
-*Приложение, которое позволяет оценить аналитический вклад каждлго фактора*
 """)
 
 with st.form("main_form"):
