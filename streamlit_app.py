@@ -46,4 +46,4 @@ with st.form("main_form"):
         st.set_page_config(page_title="Shapley SEO Decomposition", layout="wide")
         st.title("Анализ причин изменения трафика")
         data = shapley_decomposition(df, date_col, segments, before, after, min_share_of_total)
-        plot_shapley_analysis(data)
+        plot_shapley_analysis(data, segment_cols=segments)
